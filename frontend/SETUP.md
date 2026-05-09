@@ -88,7 +88,7 @@ docker-compose up frontend
 ### 개발 환경 (`.env.local`)
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3000/api
-NEXT_PUBLIC_SOCKET_URL=http://localhost
+NEXT_PUBLIC_SOCKET_URL=http://localhost/
 ```
 
 ### 프로덕션 환경 (`.env.production`)
