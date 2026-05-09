@@ -1,0 +1,32 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.container h1 {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.container p {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .container h1 {
+    font-size: 2rem;
+  }
+
+  .container p {
+    font-size: 1rem;
+  }
+}
