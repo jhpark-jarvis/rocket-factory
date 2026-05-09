@@ -17,7 +17,7 @@ services:
     networks:
       - rocket-network
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD"]
       timeout: 10s
       retries: 5
       start_period: 30s
