@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # MariaDB 데이터베이스
+  mariadb:
+    image: mariadb:latest
+    container_name: rocket-factory-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: rocket_factory
+      MYSQL_USER: rocketuser
+      MYSQL_PASSWORD: rocketpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - rocket-network
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # Backend 서비스 (Node.js + Express + Socket.io)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: rocket-factory-backend
+    environment:
+      NODE_ENV: production
+      DATABASE_HOST: mariadb
+      DATABASE_USER: rocketuser
+      DATABASE_PASSWORD: rocketpassword
+      DATABASE_NAME: rocket_factory
+      DATABASE_PORT: 3306
+    ports:
+      - "3001:3001"
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - rocket-network
+    restart: unless-stopped
+
+  # Frontend 서비스 (Next.js)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rocket-factory-frontend
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - rocket-network
+    restart: unless-stopped
+
+  # Nginx 리버스 프록시
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: rocket-factory-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - rocket-network
+    restart: unless-stopped
+
+networks:
+  rocket-network:
+    driver: bridge
+
+volumes:
+  mariadb_data:
+    driver: local
