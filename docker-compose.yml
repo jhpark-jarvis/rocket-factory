@@ -51,11 +51,12 @@ services:
       dockerfile: Dockerfile
     container_name: rocket-factory-frontend
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     depends_on:
       - backend
     networks:

@@ -7,7 +7,6 @@ npm-debug.log
 .env.local
 .DS_Store
 README.md
-.next
 .eslintrc
 .prettierrc
 .vscode
