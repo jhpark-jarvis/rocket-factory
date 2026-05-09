@@ -54,11 +54,14 @@ services:
       NODE_ENV: production
     ports:
       - "3000:3000"
+    volumes:
+      - ./frontend:/app
     depends_on:
       - backend
     networks:
       - rocket-network
     restart: unless-stopped
+    command: npm run dev
 
   # Nginx 리버스 프록시
   nginx:
