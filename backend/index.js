@@ -11,10 +11,13 @@ const io = new Server(httpServer, {
     methods: ['GET', 'POST']
   }
 });
+const authRoutes = require('./routes/auth.routes');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+// /api/auth로 시작하는 요청은 authRoutes가 처리하게 한다.
+app.use('/api/auth', authRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
