@@ -7,6 +7,7 @@ Example :   CALL rocket_factory.USP_User_List(0, NULL, NULL) -- 전체 조회
             CALL rocket_factory.USP_User_List(1, 'user01', NULL) -- UserName 조회
             CALL rocket_factory.USP_User_List(2, NULL, 'user01@example.com') -- Email 조회
 History :   2026-05-10   JHPARK 생성
+            2026-05-11   JHPARK Collate 오류 해결, Collate utf8mb4_unicode_ci 관련 설정 제거
 =============================================
 */
 
@@ -29,7 +30,7 @@ BEGIN
         FROM        rocket_factory.T_User
         WHERE       DelDT IS NULL
         AND         p_UserName IS NOT NULL
-        AND         UserName = p_UserName COLLATE utf8mb4_unicode_ci;
+        AND         UserName = p_UserName;
 
     /*
         Email 조회
@@ -40,7 +41,7 @@ BEGIN
         FROM        rocket_factory.T_User
         WHERE       DelDT IS NULL
         AND         p_Email IS NOT NULL
-        AND         Email = p_Email COLLATE utf8mb4_unicode_ci;
+        AND         Email = p_Email;
 
     /*
         전체 조회

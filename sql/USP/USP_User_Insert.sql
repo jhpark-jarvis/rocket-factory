@@ -5,16 +5,17 @@ DROP PROCEDURE IF EXISTS rocket_factory.USP_User_Insert;
 Desc.   :   USP 사용자 정보 삽입
 Example :   CALL rocket_factory.USP_User_Insert('user01', 'user01@example.com', '$2b$12$examplehash_user01', 'user01');
 History :   2026-05-11   PJWOO 생성
+            2026-05-11   JHPARK Collate 오류 해결, Collate utf8mb4_unicode_ci 관련 설정 제거
 =============================================
 */
 DELIMITER $$
 
 CREATE PROCEDURE rocket_factory.USP_User_Insert
 (
-    IN p_UserName VARCHAR(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-    IN p_Email VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-    IN p_PasswordHash VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-    IN p_Nickname VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+    IN p_UserName VARCHAR(30),
+    IN p_Email VARCHAR(255),
+    IN p_PasswordHash VARCHAR(255),
+    IN p_Nickname VARCHAR(50)
 )
 BEGIN
 
@@ -26,7 +27,7 @@ BEGIN
         SELECT EXISTS(
             SELECT 1
             FROM rocket_factory.T_User
-            WHERE Email COLLATE utf8mb4_unicode_ci = p_Email COLLATE utf8mb4_unicode_ci
+            WHERE Email
         )
     );
 
@@ -35,7 +36,7 @@ BEGIN
         SELECT EXISTS(
             SELECT 1
             FROM rocket_factory.T_User
-            WHERE UserName COLLATE utf8mb4_unicode_ci = p_UserName COLLATE utf8mb4_unicode_ci
+            WHERE UserName
         )
     );
 
