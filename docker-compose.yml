@@ -52,6 +52,8 @@ services:
     container_name: rocket-factory-frontend
     environment:
       NODE_ENV: development
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "3000:3000"
     volumes:
