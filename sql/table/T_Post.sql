@@ -1,4 +1,4 @@
-CREATE TABLE T_Post (
+CREATE TABLE rocket_factory.T_Post (
     PostIdx BIGINT AUTO_INCREMENT PRIMARY KEY,
     UserIdx BIGINT NOT NULL,
     Title VARCHAR(255) NOT NULL,

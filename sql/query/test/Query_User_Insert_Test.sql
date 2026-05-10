@@ -1,7 +1,7 @@
 /*
 =============================================
 Desc.   :   테스트용 유저 데이터 생성
-Example   :   CALL [Query_User_Insert_Test]
+Example   :   CALL rocket_factory.Query_User_Insert_Test
 History   :   2026-05-10   JHPARK 생성
 =============================================
 */
