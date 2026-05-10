@@ -10,6 +10,9 @@ services:
       MYSQL_DATABASE: rocket_factory
       MYSQL_USER: rocketuser
       MYSQL_PASSWORD: rocketpassword
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
     ports:
       - "3306:3306"
     volumes:
