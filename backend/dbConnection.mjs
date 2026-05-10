@@ -1,4 +1,4 @@
-import * as mariadb from 'mariadb';
+import mariadb from 'mariadb';
 import dotenv from 'dotenv';
 import { pathToFileURL } from 'url';
 

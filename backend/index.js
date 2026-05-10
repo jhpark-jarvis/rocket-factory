@@ -2,8 +2,8 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
-import pool from './test.mjs';
-import { dbTestQueries } from './queries/dbTest.js';
+import pool from './dbConnection.mjs';
+import { dbTestQueries } from './repositories/dbTest.js';
 
 const app = express();
 const httpServer = createServer(app);
