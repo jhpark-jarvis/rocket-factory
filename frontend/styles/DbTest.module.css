@@ -1,0 +1,111 @@
+.page {
+  min-height: 100vh;
+  padding: 40px 24px;
+  background: #f6f7f9;
+  color: #1f2933;
+}
+
+.header {
+  max-width: 1080px;
+  margin: 0 auto 24px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.header p {
+  margin: 0;
+  color: #5b6472;
+}
+
+.statusPanel,
+.tableWrap {
+  max-width: 1080px;
+  margin: 0 auto 24px;
+  background: #ffffff;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+}
+
+.statusPanel {
+  padding: 20px;
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.statusGrid div {
+  min-width: 0;
+  padding: 14px;
+  background: #f8fafc;
+  border: 1px solid #e5e9ef;
+  border-radius: 6px;
+}
+
+.statusGrid span {
+  display: block;
+  margin-bottom: 6px;
+  color: #697386;
+  font-size: 13px;
+}
+
+.statusGrid strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 18px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.tableWrap table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.tableWrap th,
+.tableWrap td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #e5e9ef;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tableWrap th {
+  background: #eef2f6;
+  color: #394150;
+  font-size: 14px;
+}
+
+.muted {
+  margin: 0;
+  color: #697386;
+}
+
+.error {
+  margin: 0;
+  color: #b42318;
+}
+
+.empty {
+  color: #697386;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 28px 16px;
+  }
+
+  .statusGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
