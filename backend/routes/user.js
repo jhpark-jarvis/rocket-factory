@@ -13,12 +13,12 @@ router.get('/user/example/:id', async (req, res, next) => {
   const searchType = req.query.type; // 'email' or 'username'
 
   let conn;
-
+  let searchWord = null;
   if (searchType === 'email') {
-    const searchEmail = req.query.email;
+    searchWord = req.query.email;
   }
   else if (searchType === 'username') {
-    const searchUserName = req.query.username;
+    searchWord = req.query.username;
   }
   else {
     return res.status(400).json({ error: 'Invalid search type' });
@@ -34,8 +34,8 @@ router.get('/user/example/:id', async (req, res, next) => {
     // (dbUserQueries.uspUserEmailList)
     // q : 'CALL rocket_factory.USP_User_List(2, NULL, "{}")'
 
-    q = q.replaceAll('{email}', searchEmail);
-    // (dbUserQueries.uspUserEmailList).format(searchEmail);
+    q = q.replaceAll('{email}', searchWord);
+    // (dbUserQueries.uspUserEmailList).format(searchWord);
     // q : 'CALL rocket_factory.USP_User_List(2, NULL, "user@example.com")'
     const checkEmailDuplicate = await conn.query(q);
     
@@ -45,7 +45,7 @@ router.get('/user/example/:id', async (req, res, next) => {
 
     if (resultData && resultData.length > 0) {
       // 데이터가 있을 때
-      userIdx = resultData[0].UserIdx;
+      userIdx = Number(resultData[0].UserIdx);
       console.log('중복된 이메일 발견. UserIdx:', userIdx);
       res.json({
         isDuplicate: true,
