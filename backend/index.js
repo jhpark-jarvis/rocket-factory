@@ -4,6 +4,7 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import healthRoutes from './routes/health.js';
 import dbRoutes from './routes/db.js';
+import userRoutes from './routes/user.js';
 import { setupSocketEvents } from './sockets/events.js';
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 // Routes
 app.use('/api', healthRoutes);
 app.use('/api', dbRoutes);
+app.use('/api', userRoutes);  
 
 // Socket.io events
 setupSocketEvents(io);
