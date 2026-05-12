@@ -9,11 +9,23 @@ const router = express.Router();
  * GET /api/user/example/:id?name=foo&page=1
  */
 router.get('/user/example/:id', async (req, res, next) => {
-  // example : /api/user/example/123?email=user@example.com
-  const searchEmail = req.query.email;
+  // example : /api/user/example/123?email=user@example.com&type=email
+  const searchType = req.query.type; // 'email' or 'username'
+
+  let conn;
+
+  if (searchType === 'email') {
+    const searchEmail = req.query.email;
+  }
+  else if (searchType === 'username') {
+    const searchUserName = req.query.username;
+  }
+  else {
+    return res.status(400).json({ error: 'Invalid search type' });
+  }
 
   // DB connection
-  let conn;
+  // TODO : 여기부터 분기 로직 작성 필요함
 
   try {
     conn = await pool.getConnection();
