@@ -2,9 +2,9 @@ export const dbUserQueries = {
 
     qUserCount: 'SELECT COUNT(*) AS count FROM T_User',
     //유저의 숫자를 불러오는 쿼리
-    uspCallUserEmail: 'CALL rocket_factory.USP_User_List(2, NULL, {})' 
+    uspUserEmailList: `CALL rocket_factory.USP_User_List(2, NULL, '{email}')`,
     // Email 조회
-    //CALL rocket_factory.USP_User_List(2, NULL, 'user01@example.com') -- Email 조회
+    //CALL rocket_factory.USP_User_List(2, NULL, "user01@example.com") -- Email 조회
     //유저의 이메일 정보를 불러오는 쿼리
     //
   };
