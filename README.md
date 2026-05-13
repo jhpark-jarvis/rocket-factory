@@ -8,23 +8,34 @@
 rocket-factory/
 ├── backend/
 │   ├── Dockerfile              # Backend 이미지 정의
+│   ├── dbConnection.mjs        # 데이터베이스 연결 설정
 │   ├── index.js                # Express + Socket.io 서버
 │   ├── package.json            # 의존성 정의
-│   ├── .dockerignore           # Docker 제외 파일
-│   └── SETUP.md                # Backend 개발 가이드
+│   ├── SETUP.md                # Backend 개발 가이드
+│   ├── repositories/           # 데이터 접근 계층
+│   │   ├── dbTest.js           # 테스트 레포지토리
+│   │   └── dbUser.js           # 사용자 레포지토리
+│   ├── routes/                 # API 라우트
+│   │   ├── db.js               # 데이터베이스 라우트
+│   │   ├── health.js           # 헬스 체크 라우트
+│   │   └── user.js             # 사용자 라우트
+│   └── sockets/                # WebSocket 이벤트 핸들러
+│       └── events.js           # Socket.io 이벤트
 │
 ├── frontend/
 │   ├── Dockerfile              # Multi-stage 빌드 설정
+│   ├── Dockerfile-build        # 프로덕션 빌드 설정
 │   ├── next.config.js          # Next.js 설정
 │   ├── package.json            # 의존성 정의
-│   ├── .dockerignore           # Docker 제외 파일
 │   ├── SETUP.md                # Frontend 개발 가이드
 │   ├── pages/
+│   │   ├── _app.js             # App 래퍼
 │   │   ├── index.js            # 홈페이지 (Socket.io 통합)
-│   │   └── _app.js             # App 래퍼
+│   │   └── db-test.js          # 데이터베이스 테스트 페이지
 │   ├── styles/
 │   │   ├── globals.css         # 전역 스타일
-│   │   └── Home.module.css     # 홈페이지 스타일
+│   │   ├── Home.module.css     # 홈페이지 스타일
+│   │   └── DbTest.module.css   # DB 테스트 페이지 스타일
 │   └── public/                 # 정적 파일
 │
 ├── nginx/
@@ -32,8 +43,26 @@ rocket-factory/
 │   ├── nginx.conf              # Nginx 리버스 프록시 설정
 │   └── SETUP.md                # Nginx 설정 가이드
 │
+├── sql/                        # 데이터베이스 스크립트
+│   ├── query/                  # 쿼리 스크립트
+│   │   ├── Query_User_Insert.sql
+│   │   └── test/               # 테스트 쿼리
+│   │       ├── Query_Post_Init_Test.sql
+│   │       ├── Query_Post_Insert_Test.sql
+│   │       ├── Query_User_Init_Test.sql
+│   │       └── Query_User_Insert_Test.sql
+│   ├── table/                  # 테이블 정의
+│   │   ├── T_Post.sql
+│   │   └── T_User.sql
+│   └── USP/                    # 저장 프로시저
+│       ├── USP_Post_List.sql
+│       ├── USP_Post_Update.sql
+│       ├── USP_User_Insert.sql
+│       └── USP_User_List.sql
+│
 ├── docker-compose.yml          # 전체 서비스 오케스트레이션
 ├── package.json                # 루트 메타데이터
+├── PROGRESS.md                 # 개발 진행 상황
 ├── README.md                   # 이 파일
 └── .env                        # 환경 변수 (git 무시)
 ```
