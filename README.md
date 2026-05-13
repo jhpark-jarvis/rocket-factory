@@ -107,39 +107,119 @@ docker-compose logs -f
 docker-compose down
 ```
 
-### 현재 구현 상태 ✅
+## 개발 진행 상황
 
-#### Backend 서비스
-- ✅ Express.js 서버 구성 (포트 3001)
-- ✅ Socket.io 실시간 통신 지원
-- ✅ CORS 설정
-- ✅ 기본 API 엔드포인트
+### 1. Backend 서비스 (75% 완료)
+
+완료:
+- Express.js 서버 구성 (포트 3001)
+- Socket.io 실시간 통신 지원
+- CORS 설정
+- 기본 API 엔드포인트
   - `GET /api/health` - 헬스 체크
   - `GET /api/test` - 테스트 엔드포인트
-- ✅ Socket 이벤트 핸들러
+- Socket 이벤트 핸들러
   - `message` - 메시지 수신
   - `disconnect` - 연결 해제
+- 에러 처리 미들웨어
+- 404 핸들러
+- 환경 변수 지원
 
-#### Frontend 서비스
-- ✅ Next.js 14 프로젝트 구성
-- ✅ Socket.io 클라이언트 통합
-- ✅ 기본 페이지 구조 (`pages/index.js`, `pages/_app.js`)
-- ✅ 스타일링 (`styles/globals.css`, `styles/Home.module.css`)
-- ✅ Next.js 설정 (`next.config.js`)
-- ✅ SSR, SSG, Static 페이지 생성 지원
+미완료:
+- 데이터베이스 마이그레이션
+- 인증/인가 시스템
+- 입력 검증
 
-#### Database
-- ✅ MariaDB 12.2.2 실행 중
-- ✅ 데이터베이스 `rocket_factory` 자동 생성
-- ✅ 응용 프로그램 사용자 설정 (rocketuser)
+### 2. Frontend 서비스 (80% 완료)
 
-#### Nginx
-- ✅ 리버스 프록시 설정
-- ✅ Frontend 라우팅 (`/` → localhost:3000)
-- ✅ Backend API 라우팅 (`/api/` → localhost:3001)
-- ✅ Socket.io 라우팅 (`/socket.io` → localhost:3001)
-- ✅ Gzip 압축 활성화
-- ✅ WebSocket 업그레이드 헤더 설정
+완료:
+- Next.js 14 프로젝트 구성
+- Socket.io 클라이언트 통합
+- 기본 페이지 구조 (`pages/index.js`, `pages/_app.js`)
+- 스타일링 (`styles/globals.css`, `styles/Home.module.css`)
+- Next.js 설정 (`next.config.js`)
+- SSR, SSG, Static 페이지 생성 지원
+- 반응형 UI (모바일/데스크톱)
+- Multi-stage Docker 빌드 최적화
+
+미완료:
+- 추가 페이지/라우팅
+- 상태 관리 (Redux/Zustand)
+- 폼 검증
+
+### 3. 데이터베이스 (50% 완료)
+
+완료:
+- MariaDB 12.2.2 실행 중
+- 데이터베이스 `rocket_factory` 자동 생성
+- 응용 프로그램 사용자 설정 (rocketuser)
+- 포트 매핑 (3306)
+
+미완료:
+- 테이블 설계 및 마이그레이션
+- 백업 전략
+- 성능 최적화
+
+### 4. Nginx 리버스 프록시 (85% 완료)
+
+완료:
+- 리버스 프록시 기본 설정
+- Frontend 라우팅 (`/` → localhost:3000)
+- Backend API 라우팅 (`/api/` → localhost:3001)
+- Socket.io 라우팅 (`/socket.io` → localhost:3001)
+- Gzip 압축 활성화
+- WebSocket 업그레이드 헤더 설정
+- 보안 헤더 설정 (X-Forwarded-*, X-Real-IP)
+
+미완료:
+- SSL/TLS (HTTPS)
+- 로드 밸런싱
+- 캐싱 정책
+
+### 5. Docker & 컨테이너 (100% 완료)
+
+완료:
+- Docker Compose 설정
+- 모든 서비스 컨테이너화 (Backend, Frontend, Nginx, MariaDB)
+- 네트워크 격리 (rocket-network)
+- 볼륨 설정 (mariadb_data 영속성)
+- 헬스 체크 설정 (MariaDB 시작 대기)
+
+### 6. 문서화 (90% 완료)
+
+완료:
+- README.md (메인 가이드)
+- backend/SETUP.md (개발 가이드)
+- frontend/SETUP.md (개발 가이드)
+- nginx/SETUP.md (설정 가이드)
+- .env.example (환경 변수 템플릿)
+- PROGRESS.md (개발 진행 상황)
+
+미완료:
+- API 문서 (Swagger/OpenAPI)
+- 배포 가이드
+- 트러블슈팅 FAQ
+
+## 진행 중인 작업
+
+- Socket.io 이벤트 라우팅 개선
+- Backend에서 MariaDB 연결 테스트
+- 기본 API 엔드포인트 (CRUD) 구현
+- Frontend에서 API 호출 통합
+
+## 다음 할 일 (우선순위순)
+
+1순위 (필수):
+- 데이터베이스 테이블 설계 및 스키마 작성
+- Backend에서 MariaDB 연결 테스트
+- 기본 API 엔드포인트 (CRUD) 구현
+- Frontend에서 API 호출 통합
+
+향후 계획:
+- 인증/인가 시스템 구현
+- 상태 관리 시스템 추가
+- 추가 페이지 및 기능 개발
+- 성능 최적화 및 모니터링
 
 ### 개별 서비스 실행
 
@@ -347,23 +427,23 @@ await connection.query(`
 ## 체크리스트
 
 설정 완료 항목:
-- ✅ Docker Compose 설정
-- ✅ Backend Express 서버
-- ✅ Frontend Next.js 앱
-- ✅ Nginx 리버스 프록시
-- ✅ MariaDB 데이터베이스
-- ✅ Socket.io 실시간 통신
-- ✅ CORS 설정
-- ✅ 헬스 체크 엔드포인트
+- [x] Docker Compose 설정
+- [x] Backend Express 서버
+- [x] Frontend Next.js 앱
+- [x] Nginx 리버스 프록시
+- [x] MariaDB 데이터베이스
+- [x] Socket.io 실시간 통신
+- [x] CORS 설정
+- [x] 헬스 체크 엔드포인트
 
 다음 단계:
-- ⬜ 데이터베이스 테이블 설계
-- ⬜ API 엔드포인트 확장
-- ⬜ 사용자 인증 시스템
-- ⬜ 에러 처리 및 로깅
-- ⬜ 테스트 코드 작성
-- ⬜ CI/CD 파이프라인
-- ⬜ 프로덕션 배포
+- [ ] 데이터베이스 테이블 설계
+- [ ] API 엔드포인트 확장
+- [ ] 사용자 인증 시스템
+- [ ] 에러 처리 및 로깅
+- [ ] 테스트 코드 작성
+- [ ] CI/CD 파이프라인
+- [ ] 프로덕션 배포
 
 ## 라이선스
 ISC
