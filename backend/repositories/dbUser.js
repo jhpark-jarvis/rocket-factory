@@ -6,9 +6,10 @@ export const dbUserQueries = {
     // Email 조회
     //CALL rocket_factory.USP_User_List(2, NULL, "user01@example.com") -- Email 조회
     //유저의 이메일 정보를 불러오는 쿼리
-    uspUserIdList : `CALL rocket_factory.USP_User_List(1, '{UserId}', NULL)`
+    uspUserIdList : `CALL rocket_factory.USP_User_List(1, '{UserId}', NULL)`,
     // 유저의 아이디(T_User [UserId]컬럼) 정보를 가져오는 쿼리        -- 20260514 PJWoo
     //CALL rocket_factory.USP_User_List(1, 'user01', NULL) -- UserId 조회        -- 20260514 PJWoo
+    uspUserInsert : `CALL rocket_factory.USP_User_Insert('{UserId}', '{Email}', '{Password}', '{Nickname}')`,
   };
   
 
