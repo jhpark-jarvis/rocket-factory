@@ -27,6 +27,9 @@ BEGIN
     IF p_Mode = 1 THEN
 
         SELECT      UserIdx
+                    , PasswordHash
+                    , UserId
+                    , Nickname
         FROM        rocket_factory.T_User
         WHERE       DelDT IS NULL
         AND         p_UserId IS NOT NULL
