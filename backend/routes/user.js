@@ -10,7 +10,7 @@ const router = express.Router();
  */
 router.get('/user/example/:id', async (req, res, next) => {
   // example : /api/user/example/123?email=user@example.com&type=email
-  const searchType = req.query.type; // 'email' or 'username'
+  const searchType = req.query.type; // 'email' or 'UserId'
   // searchType이라는 변수를 설정한다. 이 안에는 이메일인지, 아이디인 지를 구분하는 인자가 들어갈 거임.   -- 20260514 PJWoo
   // 
   let conn;
@@ -18,13 +18,13 @@ router.get('/user/example/:id', async (req, res, next) => {
   if (searchType === 'email') {
     searchWord = req.query.email;
   }
-  else if (searchType === 'username') {
-    searchWord = req.query.username;
+  else if (searchType === 'UserId') {
+    searchWord = req.query.UserId;
   }
   else {
     return res.status(400).json({ error: 'Invalid search type' });
   }
-  // searchType이 'email'일 때와 'username'일 때로 분기됨.        -- 20260514 PJWoo
+  // searchType이 'email'일 때와 'UserId'일 때로 분기됨.        -- 20260514 PJWoo
   // if문과 else문 req.query.[]안을 searchType 값에 따라 바꿔주었음.        -- 20260514 PJWoo
 
   // DB connection
@@ -32,33 +32,33 @@ router.get('/user/example/:id', async (req, res, next) => {
 
   try {
     conn = await pool.getConnection();
-    
-    if (searchType === 'email'){
+
+    if (searchType === 'email') {
       // if문으로 searchType이 이메일 일 때의 분기를, let q 변수 선언과  q안의 파라미터를 대체하는 로직을 넣어준다.        -- 20260514 PJWoo
 
-    let q = dbUserQueries.uspUserEmailList;
-    // (dbUserQueries.uspUserEmailList)
-    // q : 'CALL rocket_factory.USP_User_List(2, NULL, "{}")'
+      let q = dbUserQueries.uspUserEmailList;
+      // (dbUserQueries.uspUserEmailList)
+      // q : 'CALL rocket_factory.USP_User_List(2, NULL, "{}")'
 
-    q = q.replaceAll('{email}', searchWord);
-    // (dbUserQueries.uspUserEmailList).format(searchWord);
-    // q : 'CALL rocket_factory.USP_User_List(2, NULL, "user@example.com")'
-  } //if문이 끝나는 구간        -- 20260514 PJWoo
-  else if(searchType === 'username'){
-    let q = dbUserQueries.uspUserNameList;
-    // (dbUserQueries.uspUserNameList)
-    // q : 'CALL rocket_factory.USP_User_List(1, "{}", NULL)'
-    q = q.replaceAll('{username}', searchWord);
-    // (dbUserQueries.uspUserEmailList).format(searchWord);
-    // q : 'CALL rocket_factory.USP_User_List(2, NULL, "user@example.com")'
-  } //else if문이 끝나는 구간        -- 20260514 PJWoo 
-  else {
-    return res.status(400).json({ error: 'Invalid search type' });
-  }//else 문이 끝나는 구간        -- 20260514 PJWoo
+      q = q.replaceAll('{email}', searchWord);
+      // (dbUserQueries.uspUserEmailList).format(searchWord);
+      // q : 'CALL rocket_factory.USP_User_List(2, NULL, "user@example.com")'
+    } //if문이 끝나는 구간        -- 20260514 PJWoo
+    else if (searchType === 'UserId') {
+      let q = dbUserQueries.uspUserIdList;
+      // (dbUserQueries.uspUserIdList)
+      // q : 'CALL rocket_factory.USP_User_List(1, "{}", NULL)'
+      q = q.replaceAll('{UserId}', searchWord);
+      // (dbUserQueries.uspUserEmailList).format(searchWord);
+      // q : 'CALL rocket_factory.USP_User_List(2, NULL, "user@example.com")'
+    } //else if문이 끝나는 구간        -- 20260514 PJWoo 
+    else {
+      return res.status(400).json({ error: 'Invalid search type' });
+    }//else 문이 끝나는 구간        -- 20260514 PJWoo
     const checkEmailDuplicate = await conn.query(q);
-    
 
-    
+
+
     // 데이터 존재 여부 확인 및 UserIdx 추출
     const resultData = checkEmailDuplicate[0]; // 쿼리 결과의 첫 번째 배열
     let userIdx = null;
@@ -89,6 +89,11 @@ router.get('/user/example/:id', async (req, res, next) => {
     if (conn) conn.release();
   }
 
+});
+
+router.post('/user/register/', async (req, res, next) => {
+  // TODO : 회원가입 API 구현
+  res.json({ message: '회원가입 API 구현 예정' });
 });
 
 export default router;

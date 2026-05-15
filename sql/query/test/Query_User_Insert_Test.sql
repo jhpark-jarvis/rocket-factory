@@ -7,7 +7,7 @@ History   :   2026-05-10   JHPARK 생성
 */
 
 INSERT INTO T_User (
-    UserName,
+    UserId,
     Email,
     PasswordHash,
     Nickname

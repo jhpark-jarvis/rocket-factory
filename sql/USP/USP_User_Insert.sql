@@ -12,7 +12,7 @@ DELIMITER $$
 
 CREATE PROCEDURE rocket_factory.USP_User_Insert
 (
-    IN p_UserName VARCHAR(30),
+    IN p_UserId VARCHAR(30),
     IN p_Email VARCHAR(255),
     IN p_PasswordHash VARCHAR(255),
     IN p_Nickname VARCHAR(50)
@@ -20,7 +20,7 @@ CREATE PROCEDURE rocket_factory.USP_User_Insert
 BEGIN
 
     DECLARE v_EmailExists BIT DEFAULT 0;
-    DECLARE v_UserNameExists BIT DEFAULT 0;
+    DECLARE v_UserIdExists BIT DEFAULT 0;
 
     -- 이메일 중복 확인
     SET v_EmailExists = (
@@ -31,12 +31,12 @@ BEGIN
         )
     );
 
-    -- UserName 중복 확인
-    SET v_UserNameExists = (
+    -- UserId 중복 확인
+    SET v_UserIdExists = (
         SELECT EXISTS(
             SELECT 1
             FROM rocket_factory.T_User
-            WHERE UserName
+            WHERE UserId
         )
     );
 
@@ -45,19 +45,19 @@ BEGIN
         SET MESSAGE_TEXT = '이메일 중복';
     END IF;
 
-    IF v_UserNameExists = 1 THEN
+    IF v_UserIdExists = 1 THEN
         SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'UserName 중복';
+        SET MESSAGE_TEXT = 'UserId 중복';
     END IF;
 
     INSERT INTO rocket_factory.T_User (
-        UserName,
+        UserId,
         Nickname,
         Email,
         PasswordHash
     )
     VALUES (
-        p_UserName,
+        p_UserId,
         p_Nickname,
         p_Email,
         p_PasswordHash

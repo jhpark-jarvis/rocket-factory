@@ -20,7 +20,7 @@ BEGIN
                 P.Title,
                 P.ViewCount,
                 P.RegDT,
-                U.UserName,
+                U.UserId,
                 U.Nickname
     FROM        rocket_factory.T_Post AS P
     INNER JOIN  rocket_factory.T_User AS U

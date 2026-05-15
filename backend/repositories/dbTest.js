@@ -8,7 +8,7 @@ export const dbTestQueries = {
               TP.Content,
               TP.ViewCount,
               TP.RegDT,
-              TU.UserName,
+              TU.UserId,
               TU.Nickname
     FROM      T_Post AS TP
     LEFT JOIN T_User AS TU ON TU.UserIdx = TP.UserIdx

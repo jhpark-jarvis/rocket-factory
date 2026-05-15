@@ -1,6 +1,6 @@
 CREATE TABLE rocket_factory.T_User (
     UserIdx BIGINT AUTO_INCREMENT PRIMARY KEY,
-    UserName VARCHAR(30) NOT NULL UNIQUE,
+    UserId VARCHAR(30) NOT NULL UNIQUE,
     Email VARCHAR(255) NOT NULL UNIQUE,
     PasswordHash VARCHAR(255) NOT NULL,         -- 보안을 위해 해시된 비밀번호 저장(bcrypt)
     Nickname VARCHAR(50),

@@ -85,7 +85,7 @@ export default function DbTestPage() {
             {data?.posts.map((post) => (
               <tr key={post.PostIdx}>
                 <td>{post.PostIdx}</td>
-                <td>{post.Nickname || post.UserName || '-'}</td>
+                <td>{post.Nickname || post.UserId || '-'}</td>
                 <td>{post.Title}</td>
                 <td>{post.ViewCount}</td>
                 <td>{new Date(post.RegDT).toLocaleString('ko-KR')}</td>
