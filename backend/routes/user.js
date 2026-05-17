@@ -6,10 +6,10 @@ const router = express.Router();
 
 /**
  * 예시: 경로 파라미터 + 쿼리스트링 확인
- * GET /api/user/example/:id?name=foo&page=1
+ * GET /api/user/validate/:id?name=foo&page=1
  */
-router.get('/user/example/:id', async (req, res, next) => {
-  // example : /api/user/example/123?email=user@example.com&type=email
+router.get('/user/validate/', async (req, res, next) => {
+  // example : /api/user/validate/?email=user@example.com&type=email
   const searchType = req.query.type; // 'email' or 'UserId'
   let conn;
   let searchWord = String.Empty;
