@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/jhpark-jarvis/rocket-factory/issues"
   },
-  "homepage": "https://github.com/jhpark-jarvis/rocket-factory#readme"
+  "homepage": "https://github.com/jhpark-jarvis/rocket-factory#readme",
+  "dependencies": {
+    "socket.io-client": "^4.8.3"
+  }
 }
