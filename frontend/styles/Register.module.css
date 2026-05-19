@@ -1,0 +1,180 @@
+.container {
+    min-height: 100vh;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 430px;
+    padding: 2.5rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .header h1 {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+  
+  .header p {
+    margin: 0.8rem 0 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  
+  .inputGroup label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    opacity: 0.95;
+  }
+  
+  .inputGroup input {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border: none;
+    border-radius: 14px;
+    outline: none;
+    font-size: 1rem;
+    color: #222;
+    background: rgba(255, 255, 255, 0.92);
+    box-sizing: border-box;
+  }
+  
+  .inputGroup input::placeholder {
+    color: #999;
+  }
+  
+  .inputGroup input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.38);
+  }
+  
+  .submitButton {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    background: white;
+    color: #667eea;
+    font-size: 1.05rem;
+    font-weight: 800;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  }
+  
+  .submitButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+  }
+  
+  .submitButton:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  .footer {
+    margin-top: 1.6rem;
+    text-align: center;
+  }
+  
+  .footer p {
+    margin: 0 0 0.6rem;
+    font-size: 0.95rem;
+    opacity: 0.88;
+  }
+  
+  .footer a {
+    color: white;
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+  }
+  
+  .footer a:hover {
+    opacity: 0.82;
+  }
+  
+  @media (max-width: 600px) {
+    .card {
+      padding: 2rem 1.4rem;
+      border-radius: 20px;
+    }
+  
+    .header h1 {
+      font-size: 2.1rem;
+    }
+  
+    .header p {
+      font-size: 1rem;
+    }
+  
+    .inputGroup input {
+      font-size: 0.95rem;
+    }
+  }
+  .inputWithButton {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  
+  .inputWithButton input {
+    flex: 1;
+  }
+  
+  .checkButton {
+    flex-shrink: 0;
+    padding: 0.95rem 0.9rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.92);
+    color: #667eea;
+    font-size: 0.9rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  
+  .checkButton:hover {
+    opacity: 0.85;
+  }
+  
+  @media (max-width: 600px) {
+    .inputWithButton {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .checkButton {
+      width: 100%;
+    }
+  }
